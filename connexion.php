@@ -21,6 +21,9 @@ class Connexion{
     public function close() {
         $this->db->close();
       }
+      public function close() {
+        $this->db->close();
+      }
 
 }
 ?>

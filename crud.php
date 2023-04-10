@@ -9,7 +9,7 @@
     }
   
     public function create($nom, $prenom, $email, $ville, $adresse, $pays) {
-      $query = "INSERT INTO clients (nom, prenom, email, ville, adresse, pays) VALUES (?, ?, ?, ?, ?, ?)";
+      $query = "INSERT INTO client (nom, prenom, email,tele, ville, adresse, pays) VALUES (?,?,?, ?, ?, ?, ?)";
       $stmt = $this->db->prepare($query);
       $stmt->bind_param("ssssss", $nom, $prenom, $email, $ville, $adresse, $pays);
       $stmt->execute();
@@ -17,7 +17,7 @@
     }
   
     public function read($id) {
-      $query = "SELECT * FROM clients WHERE id = ?";
+      $query = "SELECT * FROM client WHERE id = ?";
       $stmt = $this->db->prepare($query);
       $stmt->bind_param("i", $id);
       $stmt->execute();
@@ -28,15 +28,15 @@
     }
   
     public function update($id, $nom, $prenom, $email, $ville, $adresse, $pays) {
-      $query = "UPDATE clients SET nom = ?, prenom = ?, email = ?, ville = ?, adresse = ?, pays = ? WHERE id = ?";
+      $query = "UPDATE client SET nom = ?, prenom = ?, email = ?, tele = ?,ville = ?, adresse = ?, pays = ? WHERE id = ?";
       $stmt = $this->db->prepare($query);
-      $stmt->bind_param("ssssssi", $nom, $prenom, $email, $ville, $adresse, $pays, $id);
+      $stmt->bind_param("ssssssi", $nom, $prenom, $email, $ville,$tele, $adresse, $pays, $id);
       $stmt->execute();
       $stmt->close();
     }
   
     public function delete($id) {
-      $query = "DELETE FROM clients WHERE id = ?";
+      $query = "DELETE FROM client WHERE id = ?";
       $stmt = $this->db->prepare($query);
       $stmt->bind_param("i", $id);
       $stmt->execute();
@@ -44,7 +44,7 @@
     }
   
     public function getAll() {
-      $query = "SELECT * FROM clients";
+      $query = "SELECT * FROM client";
       $stmt = $this->db->prepare($query);
       $stmt->execute();
       $result = $stmt->get_result();

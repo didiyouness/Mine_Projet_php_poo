@@ -1,9 +1,9 @@
 <?php
 class Connexion{
-    private $host;
-    private $user;
-    private $password;
-    private $dbname;
+    private $host="";
+    private $user="";
+    private $password="";
+    private $dbname="";
     private $db;
     public function __construct($host,$user,$password,$dbname){
         $this ->host = $host;
@@ -18,5 +18,9 @@ class Connexion{
             die("connection failed:".$this->db->connect_error);
         }
     }
+    public function close() {
+        $this->db->close();
+      }
+
 }
 ?>

@@ -1,0 +1,29 @@
+<?php
+class Connexion{
+    private $host="localhost";
+    private $user="root";
+    private $password="";
+    private $dbname="gestion_commercial";
+    private $db;
+    public function __construct($host,$user,$password,$dbname){
+        $this ->host = $host;
+        $this ->user = $user;
+        $this ->password = $password;
+        $this ->dbname = $dbname;
+        $this ->connect();
+    }
+    private function connect(){
+        $this->db = new mysqli($this -> host,$this -> user,$this -> password,$this -> dbname)
+        if($this->db->connect_error){
+            die("connection failed:".$this->db->connect_error);
+        }
+    }
+    public function close() {
+        $this->db->close();
+      }
+      public function close() {
+        $this->db->close();
+      }
+
+}
+?>
